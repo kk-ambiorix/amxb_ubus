@@ -1,0 +1,4 @@
+**/output/*
+**/run_test
+mod-amxb-*.*
+include_priv/amxb_ubus_version.h

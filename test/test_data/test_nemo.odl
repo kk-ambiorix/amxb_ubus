@@ -1,0 +1,75 @@
+%define {
+    %persistent object NeMo {
+        %persistent object Intf[] {
+            string Name;
+            bool Enable;
+            bool Status;
+            string Flags {
+                on action validate call check_enum [ "cross", "colors" ];
+                default "colors";
+            }
+
+            object ULIntf[] {
+                %read-only string Name;
+            }
+            object LLIntf[] {
+                %read-only string Name;
+            }
+
+            object Query[] {
+                string Description;
+                string Subscribers;
+                string ResultString;
+
+                variant getResult();
+                void setPeriodicInform(in uint32 interval, out string data);
+
+                object TestObject[] {
+                    string Text;
+                }
+            }
+        }
+    }
+}
+
+%populate {
+    object NeMo.Intf {
+        instance add(0, "lan") {
+            parameter Name = "lan";
+            parameter Enable = true;
+
+            object Query {
+                instance add(100, "SomeKey") {
+                    parameter ResultString = "ok";
+                }
+            }
+        }
+        instance add(0, "wan") {
+            parameter Name = "wan";
+            parameter Enable = false;
+            object Query {
+                instance add(200, "") {
+                    parameter ResultString = "nok";
+                }
+                instance add(210, "test") {
+                    parameter ResultString = "true";
+                }
+                instance add(220, "") {
+                    parameter ResultString = "true";
+                }
+            }
+        }
+        instance add(0, "wifi") {
+            parameter Name = "wifi";
+            parameter Enable = false;
+            object Query {
+                instance add(300, "") {
+                    parameter ResultString = "nok";
+                }
+                instance add(310, "") {
+                    parameter ResultString = "test";
+                }
+            }
+        }
+    }
+}

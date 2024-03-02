@@ -1,0 +1,11 @@
+Source: mod-amxb-ubus
+Section: devel
+Priority: optional
+Maintainer: peter.deherdt <peter.deherdt@softathome.com>
+
+Package: mod-amxb-ubus
+Architecture: amd64
+Depends: ${shlibs:Depends}
+Description: UBUS backend implementation for amxb
+  UBUSBackend
+ 

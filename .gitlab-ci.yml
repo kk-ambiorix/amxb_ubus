@@ -1,0 +1,14 @@
+variables:
+  SAH_CI_IMAGE: "registry.gitlab.com/soft.at.home/docker/sah-nte:latest"
+  BUILD_DEPS: libamxc libamxb libamxd libamxp
+  TEST_DEPS: libamxj libyajl-dev amxrt psmisc valgrind lua5.1
+  BUILD_TARGET: mod-amxb-ubus
+  PC_DOC_GEN: "off"
+  PC_CHECK_UNIT_TEST: "on"
+  PC_PAGES: "on"
+  PC_DOC_GEN: "off" 
+  PC_CROSS_COMPILATION: "off"
+  SAH_NTE_IMAGE: $SAH_CI_IMAGE
+
+include:
+  - remote: 'https://gitlab.com/soft.at.home/ci/gitlab-ci/raw/main/ambiorix-default-pipeline.yml'
